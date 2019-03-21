@@ -6,25 +6,25 @@
       <!-- SHOW INPUT DISPLAY -->
       <div class="display">{{ calculator.current || '0' }}</div>
       <!-- SHOW CLICKABLE BUTTONS -->
-      <div @click="clearAll" class="btn operator2 c">C</div>
-      <div @click="del" class="btn operator2">←</div>
-      <div @click="divide" class="btn operator2">/</div>
+      <div @click="clearAll" class="btn operator c">C</div>
+      <div @click="del" class="btn operator">←</div>
+      <div @click="divide" class="btn operator">/</div>
       <div @click="append('7')" class="btn">7</div>
       <div @click="append('8')" class="btn">8</div>
       <div @click="append('9')" class="btn">9</div>
-      <div @click="multiply" class="btn operator2">x</div>
+      <div @click="multiply" class="btn operator">x</div>
       <div @click="append('4')" class="btn">4</div>
       <div @click="append('5')" class="btn">5</div>
       <div @click="append('6')" class="btn">6</div>
-      <div @click="substract" class="btn operator2">-</div>
+      <div @click="substract" class="btn operator">-</div>
       <div @click="append('1')" class="btn">1</div>
       <div @click="append('2')" class="btn">2</div>
       <div @click="append('3')" class="btn">3</div>
-      <div @click="add" class="btn operator2">+</div>
+      <div @click="add" class="btn operator">+</div>
       <div @click="sign" class="btn">±</div>
       <div @click="append('0')" class="btn">0</div>
       <div @click="dot" class="btn">.</div>
-      <div @click="equal" class="btn operator2">=</div>
+      <div @click="equal" class="btn operator">=</div>
     </div>
   </div>
 </template>
@@ -128,6 +128,7 @@ export default {
   width: 30%;
   height: 500px;
   margin: 0 auto;
+  box-shadow: 4px 3px 2px 0px #c9c8c88c;
 }
 
 .display {
@@ -155,10 +156,25 @@ export default {
   justify-content: center;
   align-items: center;
   border: 1px solid #333;
+  background-color: #f2f2f2;
 }
 
 .c {
   grid-column:  1 / 3;
+}
+
+.btn:hover { 
+  background-color: rgba(36, 163, 146, 0.575); 
+  cursor: pointer; 
+}
+
+.operator { 
+  background-color:rgb(88, 215, 204) 
+}
+
+.operator:hover { 
+  background-color: rgba(31, 116, 122, 0.829); 
+  cursor: pointer; 
 }
 
 </style>
