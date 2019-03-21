@@ -12,11 +12,11 @@
       <div @click="append('7')" class="btn">7</div>
       <div @click="append('8')" class="btn">8</div>
       <div @click="append('9')" class="btn">9</div>
-      <div @click="times" class="btn operator2">x</div>
+      <div @click="multiply" class="btn operator2">x</div>
       <div @click="append('4')" class="btn">4</div>
       <div @click="append('5')" class="btn">5</div>
       <div @click="append('6')" class="btn">6</div>
-      <div @click="minus" class="btn operator2">-</div>
+      <div @click="substract" class="btn operator2">-</div>
       <div @click="append('1')" class="btn">1</div>
       <div @click="append('2')" class="btn">2</div>
       <div @click="append('3')" class="btn">3</div>
@@ -25,7 +25,6 @@
       <div @click="append('0')" class="btn">0</div>
       <div @click="dot" class="btn">.</div>
       <div @click="equal" class="btn operator2">=</div>
-
     </div>
   </div>
 </template>
@@ -44,8 +43,77 @@ export default {
         end: false
       }
     }
+  },
+  methods: {
+    // attaches numbers clicked
+    append(number) {
+      if(number == '0' && this.calculator.current == '')
+        this.calculator.current = ''
+      else {
+        if(this.calculator.operatorClicked) {
+          this.calculator.current = ''
+          this.calculator.operatorClicked = false
+        }
+        this.calculator.current = `${this.calculator.current}${number}`
+      }
+    },
+    // returns result from calculation
+    equal() {
+      this.calculator.current = this.calculator.operator(
+        parseFloat(this.calculator.previous),
+        parseFloat(this.calculator.current)
+      )
+      this.calculator.previous = null
+      this.calculator.sign = ''
+      this.calculator.end = true
+    },
+    // basic operators: add, substract, multiply, divide
+    add() {
+      this.calculator.operator = (a, b) => a + b
+      this.setPrevious()
+      this.calculator.sign = '+'
+    },
+    substract() {
+      this.calculator.operator = (a, b) => a - b
+      this.setPrevious()
+      this.calculator.sign = '-'
+    },
+    multiply() {
+      this.calculator.operator = (a, b) => a * b
+      this.setPrevious()
+      this.calculator.sign = 'x'
+    },
+    divide() {
+      this.calculator.operator = (a, b) => a / b
+      this.setPrevious()
+      this.calculator.sign = '/'
+    },
+    // to show previous input
+    setPrevious() {
+      this.calculator.previous = this.calculator.current
+      this.calculator.operatorClicked = true;
+    },
+    // to change sign in front of number -/+
+    sign() {
+      if(this.calculator.current != '')
+        this.calculator.current = this.calculator.current.charAt(0) === '-' ?
+          this.calculator.current.slice(1) : `-${this.calculator.current}`
+    },
+    // add decimal dot
+    dot() {
+      if (this.calculator.current.indexOf('.') === -1)
+        this.append('.')
+    },
+    // reset current input
+    del() {
+      if(this.calculator.current)
+        this.calculator.current = this.calculator.current.slice(0, -1)
+    },
+    // clear input and result   
+    clearAll() {
+      this.calculator.current = ''
+    },
   }
-  
 }
 </script>
 
