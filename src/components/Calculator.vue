@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <div class="calculator">
-      <!-- SHOW PREVIOUS INPUT -->
+      <!-- show previous input -->
       <div class="prev">{{ calculator.previous || '' }} {{ calculator.sign }}</div>
-      <!-- SHOW INPUT DISPLAY -->
+      <!-- show current input in display -->
       <div class="display">{{ calculator.current || '0' }}</div>
-      <!-- SHOW CLICKABLE BUTTONS -->
+      <!-- show buttons with methods on click -->
       <div @click="clearAll" class="btn operator c">C</div>
       <div @click="del" class="btn operator">←</div>
       <div @click="divide" class="btn operator">/</div>
@@ -112,6 +112,8 @@ export default {
     // clear input and result   
     clearAll() {
       this.calculator.current = ''
+      this.calculator.previous = null
+      this.calculator.sign = ''
     },
   }
 }
@@ -121,12 +123,16 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Teko');
 
+.container {
+  padding-top: 40px;
+}
+
 .calculator {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(30px, auto);
   text-align: center;
-  width: 30%;
+  width: 300px;
   height: 500px;
   margin: 0 auto;
   box-shadow: 4px 3px 2px 0px #c9c8c88c;
@@ -149,6 +155,8 @@ export default {
   justify-content: flex-end;
   align-items: center;
   grid-column:  1 / 5;
+  padding: 0 10px 0 0;
+  min-height: 43px;
   background-color: #333;
   color: #fff;
   border: 1px solid #eee
