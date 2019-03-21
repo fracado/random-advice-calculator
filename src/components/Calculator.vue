@@ -57,8 +57,9 @@ export default {
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(30px, auto);
   text-align: center;
-  width: 250px;
-  height: 450px;
+  width: 30%;
+  height: 500px;
+  margin: 0 auto;
 }
 
 .display {
@@ -66,6 +67,9 @@ export default {
   justify-content: flex-end;
   align-items: center;
   grid-column:  1 / 5;
+  padding: 0 10px 0 0;
+  background-color: rgb(226, 225, 225);
+  box-shadow: inset 0 0 12px #1f1e1e;
 }
 
 .prev {
@@ -73,6 +77,9 @@ export default {
   justify-content: flex-end;
   align-items: center;
   grid-column:  1 / 5;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #eee
 }
 
 .btn {
