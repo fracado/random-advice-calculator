@@ -119,6 +119,7 @@ export default {
 
 <!-- CSS STYLING -->
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Teko');
 
 .calculator {
   display: grid;
@@ -129,6 +130,8 @@ export default {
   height: 500px;
   margin: 0 auto;
   box-shadow: 4px 3px 2px 0px #c9c8c88c;
+  font-family: 'Teko', sans-serif;
+  font-size: 30px;
 }
 
 .display {
