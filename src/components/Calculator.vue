@@ -52,15 +52,11 @@ export default {
   methods: {
     // attaches numbers clicked
     append(number) {
-      if (number == '0' && this.calculator.current == '')
-        this.calculator.current = ''
-      else {
-        if (this.calculator.operatorClicked) {
+      if (this.calculator.operatorClicked) {
           this.calculator.current = ''
           this.calculator.operatorClicked = false
         }
         this.calculator.current = `${this.calculator.current}${number}`
-      }
     },
     // returns result from calculation
     equal() {
@@ -70,6 +66,7 @@ export default {
       )
       this.calculator.previous = null
       this.calculator.sign = ''
+      this.calculator.operatorClicked = true;     
       axios
       .get('https://api.adviceslip.com/advice')
       .then(response => (this.calculator.info = '"'+ response.data.slip.advice +'"'))
