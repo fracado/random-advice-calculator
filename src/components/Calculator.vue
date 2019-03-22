@@ -5,6 +5,8 @@
       <div class="prev">{{ calculator.previous || '' }} {{ calculator.sign }}</div>
       <!-- show current input in display -->
       <div class="display">{{ calculator.current || '0' }}</div>
+      <!-- show API info -->
+      <div class="info">{{ calculator.info }}</div>
       <!-- show buttons with methods on click -->
       <div @click="clearAll" class="btn operator c">C</div>
       <div @click="del" class="btn operator">←</div>
@@ -30,6 +32,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'Simple Vue Calculator',
   data(){
@@ -40,17 +43,18 @@ export default {
         operator: null,
         operatorClicked: false,
         sign: '',
-        end: false
+        info: null
       }
     }
   },
+
   methods: {
     // attaches numbers clicked
     append(number) {
-      if(number == '0' && this.calculator.current == '')
+      if (number == '0' && this.calculator.current == '')
         this.calculator.current = ''
       else {
-        if(this.calculator.operatorClicked) {
+        if (this.calculator.operatorClicked) {
           this.calculator.current = ''
           this.calculator.operatorClicked = false
         }
@@ -65,7 +69,9 @@ export default {
       )
       this.calculator.previous = null
       this.calculator.sign = ''
-      this.calculator.end = true
+      axios
+      .get('https://api.adviceslip.com/advice')
+      .then(response => (this.calculator.info = '"'+ response.data.slip.advice +'"'))
     },
     // basic operators: add, substract, multiply, divide
     add() {
@@ -115,7 +121,7 @@ export default {
       this.calculator.previous = null
       this.calculator.sign = ''
     },
-  }
+  },
 }
 </script>
 
@@ -186,6 +192,16 @@ export default {
 .operator:hover { 
   background-color: rgba(31, 116, 122, 0.829); 
   cursor: pointer; 
+}
+
+.info {
+  grid-column:  1 / 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #333;
+  font-style: italic;
+  padding: 2px;
 }
 
 </style>
