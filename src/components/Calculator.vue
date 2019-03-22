@@ -35,7 +35,7 @@
 <script>
 import axios from 'axios';
 export default {
-  name: 'Simple Vue Calculator',
+  name: 'app',
   data(){
     return {
       calculator: {
@@ -99,7 +99,7 @@ export default {
     },
     // to change sign in front of number -/+
     sign() {
-      if(this.calculator.current != '')
+      if (this.calculator.current != '')
         this.calculator.current = this.calculator.current.charAt(0) === '-' ?
           this.calculator.current.slice(1) : `-${this.calculator.current}`
     },
@@ -110,7 +110,7 @@ export default {
     },
     // reset current input
     del() {
-      if(this.calculator.current)
+      if (this.calculator.current)
         this.calculator.current = this.calculator.current.slice(0, -1)
     },
     // clear input and result   
