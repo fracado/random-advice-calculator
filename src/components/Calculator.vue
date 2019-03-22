@@ -171,7 +171,7 @@ export default {
   justify-content: center;
   align-items: center;
   border: 1px solid #333;
-  background-color: #f2f2f2;
+  background-color: aliceblue;
 }
 
 .c {
@@ -200,6 +200,7 @@ export default {
   border: 2px solid #333;
   font-style: italic;
   padding: 2px;
+  background-color: aliceblue;
 }
 
 h1 {
