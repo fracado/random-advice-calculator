@@ -1,8 +1,9 @@
 <template>
   <div class="container">
+    <h1>Random Advice Calculator</h1>
     <div class="calculator">
       <!-- show previous input -->
-      <div class="prev">{{ calculator.previous || '' }} {{ calculator.sign }}</div>
+      <div class="prev">{{ calculator.previous || '' }} {{ calculator.sign }} </div>
       <!-- show current input in display -->
       <div class="display">{{ calculator.current || '0' }}</div>
       <!-- show API info -->
@@ -202,6 +203,13 @@ export default {
   border: 2px solid #333;
   font-style: italic;
   padding: 2px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 46px;
+  margin-bottom: 2.6rem;
+  text-shadow: 1px 2px 5px rgba(125, 125, 125, 0.4);
 }
 
 </style>
